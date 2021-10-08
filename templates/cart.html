@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container" style="margin-top:2%">
+<div class="row">
+{% for eshop_item in eshop_items %}
+
+<main>
+{% for cart_item in cart_items %}
+    {% if cart_item.items == eshop_item.id %}
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+        <img src="../{{ eshop_item.image }}" alt="" width="100%">
+    </div>
+    <div class="col-8">
+        <h1 class="display-5 fw-bold">{{ eshop_item.name }}</h1>
+        <p class="col-md-8 fs-4">{{ eshop_item.description }}</p>
+
+    </div>
+    <div class="col-1">
+        <h2 class="display-5 fw-bold">{{ eshop_item.price }}€</h2>
+        <a href="../delete_from_cart/{{ cart_item.id }}"><button class="btn-sm btn-danger btn-lg"  type="button">Remove</button></a>
+    </div>
+  </div>
+</div>
+    {% endif %}
+{% endfor %}
+
+</main>
+
+{% endfor %}
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+    </div>
+    <div class="col-8">
+
+    </div>
+    <div class="col-1">
+        <h1 class="display-5 fw-bold">Checkout summary</h1>
+        <h2 class="display-5 fw-bold">{{ final_price }}</h2>
+        <form action="{{ url_for('create_checkout_session') }}" method="POST">
+        <button type="submit" class="btn btn-primary btn-lg">Checkout</button>
+        </form>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+{% endblock %}

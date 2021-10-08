@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>Thanks for your order  {{ user.name }}!</h1>
+    <h2>Order summary:</h2>
+    {% for item in items %}
+    <h2>{{ item.price_data.product_data.name }} , PCS: {{ item.quantity }} , Price: {{ (item.price_data.unit_amount) }}</h2>
+    {% endfor %}
+        <p>
+          We appreciate your business!
+          If you have any questions, please email
+          <a href="mailto:orders@example.com">shamanaaaa@gmail.com</a>.
+        </p>
+</div>
+{% endblock %}
